@@ -69,8 +69,18 @@ class Image extends \yii\db\ActiveRecord
 
         $filePath = $base.DIRECTORY_SEPARATOR.
             $sub.DIRECTORY_SEPARATOR.$this->urlAlias.$urlSize.'.'.pathinfo($origin, PATHINFO_EXTENSION);;
+
         if(!file_exists($filePath)){
-            $this->createVersion($origin, $size);
+            try {
+                $newOrigin = str_replace('Realties/', 'Realties2/', $origin);
+                $this->createVersion($newOrigin, $size);
+                
+            }catch(\Exception $e){
+                $this->createVersion($origin, $size);
+                // copy($newOrigin, $origin);
+                // unlink($newOrigin);
+                
+            }
 
             if(!file_exists($filePath)){
                 throw new \Exception('Problem with image creating.');
