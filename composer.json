@@ -31,7 +31,7 @@
     },
     "autoload": {
         "psr-4": {
-            "rico\\yii2images\\": "desperial/yii2-images"
+            "rico\\yii2images\\": ""
         }
     }
 }
